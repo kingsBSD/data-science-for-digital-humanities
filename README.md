@@ -19,3 +19,15 @@ swirl()
 * Functions
 * Vectors
 * Matrices
+
+## Class 2
+* Dataframes
+* Slicing
+* Subsets
+* Sorting
+* Lists
+* Factors
+* Conditionals
+* Loops
+* The "apply" function
+* Defining functions
