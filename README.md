@@ -1,5 +1,5 @@
 # digital-methods-R
-Swirl courses for the BA in Digital Culture at the Department of Digital Humanities, King's College London.
+Swirl courses for supporting teaching at the Department of Digital Humanities, King's College London.
 We start with a basic introduction to R.
 
 To obtain a suitable Rstudio environment, you might try our
