@@ -1,0 +1,326 @@
+- Class: meta
+  Course: BA Digital Methods 2
+  Lesson: Class 2
+  Author: Tobias Blanke
+  Type: Standard
+  Organization: King's College London
+  Version: 2.4.2
+
+- Class: text
+  Output: You hopefully remember from last time that vectors are one-dimensional collections of item and that matrixes are two-dimensional. Today, we cover data frames, which also expose more than one dimension. 
+
+- Class: text
+  Output: Like matrixes, data frames also have rows and columns but can hold different types of variables in each of their columns. Think about it! This way we can record any observation in the world. Any observation will have different attributes we associate with it. For instance, flowers can be of different types and colours. With data frames we can record each observation of flowers by recording it in rows and assign to the columns the various features we observe like colour, type, etc. This way the whole world is for us to record in data frames!
+
+- Class: cmd_question
+  Output: R comes preloaded with many example data sets containing many real-life observations. One of the most famous ones is mtcars. As the name tells you, it contains observations about cars. You can look at the first few observations/rows by typing in head(mtcars). Contemplate a bit how cars are described here.
+  CorrectAnswer: head(mtcars)
+  AnswerTests: omnitest(correctExpr='head(mtcars)')
+  Hint: Just type in head(mtcars).
+
+- Class: cmd_question
+  Output: In order to understand more about the structure of mtcars use the function str. Type in str(mtcars) to see which features were recorded for each observation. 
+  CorrectAnswer:  str(mtcars)
+  AnswerTests: omnitest(correctExpr='str(mtcars)')
+  Hint: Just type in str(mtcars).
+  
+- Class: text
+  Output: But we are more interested in our own exciting gambling and social media life than cars. So, let's return to the records of our week from last time and create a data frame to hold all its glorious details. You might have noticed that your workspace already contains some of the variables we got to know earlier like linkedin, days, etc. They were pre-loaded when you started the lesson. My pleasure!
+
+- Class: cmd_question
+  Output: Test that everything is loaded correctly by printing out the linkedin variable.
+  CorrectAnswer: linkedin
+  AnswerTests: omnitest(correctExpr='linkedin')
+  Hint: Just type in linkedin.
+
+- Class: cmd_question
+  Output: In order to get our week together into a single data frame, type in my_week_df  <- data.frame(days, linkedin, facebook, poker, roulette, happy). This combines all our vectors into the data frame my_week_df. Each row is a day in your life. 
+  CorrectAnswer:  my_week_df  <- data.frame(days, linkedin, facebook, poker, roulette, happy)
+  AnswerTests: omnitest(correctExpr='my_week_df  <- data.frame(days, linkedin, facebook, poker, roulette, happy)')
+  Hint: Just type in my_week_df  <- data.frame(days, linkedin, facebook, poker, roulette, happy).
+
+- Class: cmd_question
+  Output: Just like matrixes, we can select rows and columns with the [row, column]. Select row 1, column 2 with my_week_df[1,2].
+  CorrectAnswer:  my_week_df[1,2]
+  AnswerTests: omnitest(correctExpr=' my_week_df[1,2]')
+  Hint: Just type in my_week_df[1,2].
+
+- Class: cmd_question
+  Output: You can also select entire rows/observations by simply leaving the column selector empty. Try to select the second row with my_week_df[2,]
+  CorrectAnswer:  my_week_df[2,]
+  AnswerTests: omnitest(correctExpr='my_week_df[2,]')
+  Hint: Type in my_week_df[2,].
+
+- Class: cmd_question
+  Output: Do you remember how to select multiple elements in a vector? It is similar for data frames. In order to select row 2 to 4, type in my_week_df[2:4,].
+  CorrectAnswer:  my_week_df[2:4,]
+  AnswerTests: omnitest(correctExpr='my_week_df[2:4,]')
+  Hint: Type in my_week_df[2:4,].
+
+- Class: cmd_question
+  Output: Any idea how to select the third column rather than a row? Try it by yourself!
+  CorrectAnswer:  my_week_df[,3]
+  AnswerTests: omnitest(correctExpr='my_week_df[,3]')
+  Hint: Almost, just type my_week_df[,3].
+
+- Class: cmd_question
+  Output: Do you know how to select the third and forth column?
+  CorrectAnswer:  my_week_df[,3:4]
+  AnswerTests: omnitest(correctExpr='my_week_df[,3:4]')
+  Hint: It is my_week_df[,3:4].
+
+- Class: cmd_question
+  Output: We can also select columns by name. When we created the data frame, the columns were automatically given the name of the vector they were made of. What do you see when you type my_week_df[,'happy']? Obviously, your emotions are rather mixed. 
+  CorrectAnswer:  my_week_df[,'happy']
+  AnswerTests: omnitest(correctExpr='my_week_df[,\'happy\']')
+  Hint: Just type in my_week_df[,'happy'].
+  
+- Class: cmd_question
+  Output: Selecting columns by their name is something we will do rather frequently in R. This is why there is a shortcut using the dollar sign. Try happy_vector <- my_week_df$happy to select and assign the happy column. 
+  CorrectAnswer:  happy_vector <- my_week_df$happy
+  AnswerTests: omnitest(correctExpr='happy_vector <- my_week_df$happy')
+  Hint: Type in happy_vector <- my_week_df$happy.
+
+- Class: cmd_question
+  Output: Say we would like to select all days, we were happy. This is easy to do in R with happy_days_df <- my_week_df[my_week_df$happy,]. Try it!
+  CorrectAnswer:  happy_days_df <- my_week_df[my_week_df$happy,]
+  AnswerTests: omnitest(correctExpr='happy_days_df <- my_week_df[my_week_df$happy,]')
+  Hint: Just type happy_days_df <- my_week_df[my_week_df$happy,]
+
+- Class: text
+  Output: Take some time and look at the expression happy_days_df <- my_week_df[my_week_df$happy,]. What kind of parts can you identify? How are the rows/days selected when you were happy? Finally, try and click on happy_days_df in your environment pane. What do you see?
+
+- Class: cmd_question
+  Output: To be honest, I personally found the last expression a bit difficult to understand at first. Fortunately, R has another easy way to select rows from a data frame with the subset function.  If you would like to select all the days/rows when you had more views on LinkedIn than Facebook, you can simply type small_my_week_df <- subset(my_week_df, subset = linkedin > facebook). Try it!
+  CorrectAnswer:  small_my_week_df <- subset(my_week_df, subset = linkedin > facebook)
+  AnswerTests: omnitest(correctExpr='small_my_week_df <- subset(my_week_df, subset = linkedin > facebook)')
+  Hint: Just type in small_my_week_df <- subset(my_week_df, subset = linkedin > facebook).
+  
+- Class: cmd_question
+  Output: Print out small_my_week_df.
+  CorrectAnswer:  small_my_week_df
+  AnswerTests: omnitest(correctExpr='small_my_week_df')
+  Hint: It is small_my_week_df. 
+
+- Class: cmd_question
+  Output: To select the days when I won as much in poker as in roulette, try subset(my_week_df, subset = poker == roulette).
+  CorrectAnswer:  subset(my_week_df, subset = poker == roulette)
+  AnswerTests: omnitest(correctExpr='subset(my_week_df, subset = poker == roulette)')
+  Hint: Just type subset(my_week_df, subset = poker == roulette).
+
+- Class: cmd_question
+  Output: That's almost it for data frames. I promise they get more interesting once we start working with real data sets. One more thing you often want to do is to sort a data frame according to one or more of its columns. We have another function for that called order. First find the correct order of all your facebook views by typing in ordered_positions <- order(my_week_df$facebook, decreasing=TRUE). What do you think the decreasing argument does?
+  CorrectAnswer:  ordered_positions <- order(my_week_df$facebook, decreasing=TRUE)
+  AnswerTests: omnitest(correctExpr='ordered_positions <- order(my_week_df$facebook, decreasing=TRUE)')
+  Hint: Just type ordered_positions <- order(my_week_df$facebook, decreasing=TRUE).
+
+- Class: cmd_question
+  Output: Then, use the ordered_positions to sort the data frame with largest_first_df <- my_week_df[ordered_positions, ].
+  CorrectAnswer:  largest_first_df <- my_week_df[ordered_positions, ]
+  AnswerTests: omnitest(correctExpr='largest_first_df <- my_week_df[ordered_positions, ]')
+  Hint: Just type largest_first_df <- my_week_df[ordered_positions, ].
+
+- Class: cmd_question
+  Output: Now, for the head with head(largest_first_df).
+  CorrectAnswer:  head(largest_first_df)
+  AnswerTests: omnitest(correctExpr='head(largest_first_df)')
+  Hint: Just type head(largest_first_df).
+
+- Class: text
+  Output: That's it for the most important concepts around data frames in R. Next we cover a few things we do not really need in this for the time being but that are good to know nevertheless. You will need them for reading some of the code you find online. We start with yet another data type called lists. Afterwards, we look at factors.
+
+- Class: cmd_question
+  Output: Lists are an extension of vectors and allow different types of values to be collected. Due to this, lists are often used to store various types of input and output data and sets. We will not use lists much for now but you might encounter them as superstructures to hold any other data structure. Let's first create a vector of numbers from 1 to 10 with my_vector <- 1:10. 
+  CorrectAnswer:  my_vector <- 1:10
+  AnswerTests: omnitest(correctExpr='my_vector <- 1:10')
+  Hint: Just type my_vector <- 1:10.
+  
+- Class: cmd_question
+  Output: Now, let's create a matrix with numerics from 1 up to 9. Run my_matrix <- matrix(1:9, ncol = 3).
+  CorrectAnswer:  my_matrix <- matrix(1:9, ncol = 3)
+  AnswerTests: omnitest(correctExpr='my_matrix <- matrix(1:9, ncol = 3)')
+  Hint: Just type my_matrix <- matrix(1:9, ncol = 3).
+  
+- Class: cmd_question
+  Output: Now select the first 10 rows of mtcars. Assign my_df <- mtcars[1:10,].
+  CorrectAnswer:  my_df <- mtcars[1:10,]
+  AnswerTests: omnitest(correctExpr='my_df <- mtcars[1:10,]')
+  Hint: Type in my_df <- mtcars[1:10,].
+
+- Class: cmd_question
+  Output: Finally, let's collect the vector, the matrix and the data frame in a list with my_list <- list(my_vector, my_matrix, my_df).
+  CorrectAnswer:  my_list <- list(my_vector, my_matrix, my_df)
+  AnswerTests: omnitest(correctExpr='my_list <- list(my_vector, my_matrix, my_df)')
+  Hint: Just run my_list <- list(my_vector, my_matrix, my_df).
+
+- Class: cmd_question
+  Output: Print out my_list.
+  CorrectAnswer:  my_list
+  AnswerTests: omnitest(correctExpr='my_list')
+  Hint: Type in my_list.
+
+- Class: cmd_question
+  Output: You now have a big collector with my_list! If you would like to access any element, you can use the double square brackets. For the first one, try my_list[[1]].
+  CorrectAnswer: my_list[[1]]
+  AnswerTests: omnitest(correctExpr='my_list[[1]]')
+  Hint: Just type my_list[[1]].
+  
+- Class: cmd_question
+  Output: I promised to talk about factors, too. Let's create months <-  c("March","April","January","November","January", "September","October","September","November","August", "January","November","November","February","May","August", "July","December","August","August","September","November","February","April"). Note that use " again instead of '.
+  CorrectAnswer:   months <-  c("March","April","January","November","January", "September","October","September","November","August", "January","November","November","February","May","August", "July","December","August","August","September","November","February","April")
+  AnswerTests: omnitest(correctExpr='months <-  c("March","April","January","November","January", "September","October","September","November","August", "January","November","November","February","May","August", "July","December","August","August","September","November","February","April")')
+  Hint: Just type in the exact expression for months <-  c("March","April","January","November","January", "September","October","September","November","August", "January","November","November","February","May","August", "July","December","August","August","September","November","February","April").
+
+- Class: cmd_question
+  Output: Now, create a month factor with months_f <- factor(months).
+  CorrectAnswer: months_f <- factor(months)
+  AnswerTests: omnitest(correctExpr='months_f <- factor(months)')
+  Hint: Just type in months_f <- factor(months).
+
+- Class: cmd_question
+  Output: Print it with months_f. As you can see factors basically summarize the values in vector into shorter easier to handle and numerical indexes.
+  CorrectAnswer: months_f 
+  AnswerTests: omnitest(correctExpr='months_f')
+  Hint: Just type in months_f.
+
+- Class: cmd_question
+  Output: A very useful function in R is called table, which counts the frequencies of variables and organises these into a nice table. Try table(months_f). We will come back to this next time, too, when we discuss table as function to help us explore data in more detail.
+  CorrectAnswer: table(months_f)
+  AnswerTests: omnitest(correctExpr='table(months_f)')
+  Hint: Just type in table(months_f).
+  
+- Class: text
+  Output: I recommend playing a little with the mtcars data set using the various functions we have met. http://www.statmethods.net/management/ is a very useful website. Try some of its code and run some of the examples in your R environment. You can start a play session in swirl() with play(). If you would like to return to swirl after you finished playing, type in next().
+
+- Class: text
+  Output: Next we cover loops and control structures, which are common to all programming environments. But as R is a fairly simple language, we will hardly use them here. Please, note that SWIRL is not the greatest environment to learn more complicated statements like functions, as you have to type everything more or less within the same line. Normally, you would use indenting to make the code more readable. Check out what that means by asking Wikipedia https://en.wikipedia.org/wiki/Programming_style#Indentation.
+
+- Class: text
+  Output: Control structures execute a piece of code based on a condition. You can recognize them in most programming languages by the keyword if. In R they look like if (test_expression) { statement(s) }, which translates to if the test is ok, execute the statements.
+
+- Class: cmd_question
+  Output: Let's try the if-statement. It is not so difficult to understand. Please, define medium <- 'LinkedIn'
+  CorrectAnswer: medium <- 'LinkedIn'
+  AnswerTests: omnitest(correctExpr='medium <- \'LinkedIn\'')
+  Hint: Just type in medium <- 'LinkedIn'.
+
+- Class: cmd_question
+  Output: Now, also assign num_views <- 14
+  CorrectAnswer: num_views <- 14
+  AnswerTests: omnitest(correctExpr='num_views <- 14')
+  Hint: Just type in num_views <- 14.
+
+- Class: cmd_question
+  Output: Now, type if (medium == 'LinkedIn') { print('Showing LinkedIn information') }. What has just happened?
+  CorrectAnswer: if (medium == 'LinkedIn') { print('Showing LinkedIn information') }
+  AnswerTests: omnitest(correctExpr='if (medium == \'LinkedIn\') { print(\'Showing LinkedIn information\') }')
+  Hint: Just type in if (medium == 'LinkedIn') { print('Showing LinkedIn information') }.
+
+- Class: cmd_question
+  Output: Let's try to confirm whether we are popular with if (num_views > 15) { print('You are popular!') }.
+  CorrectAnswer: if (num_views > 15) { print('You are popular!') }
+  AnswerTests: omnitest(correctExpr='if (num_views > 15) { print(\'You are popular!\') }')
+  Hint: Just type in if (num_views > 15) { print('You are popular!') }.
+
+- Class: cmd_question
+  Output: You can combine both expressions also logically. & stands for a logical and, while | stands for the logical or. Try to type in if (num_views > 15 & medium == 'LinkedIn') {print('You are popular on LinkedIn!')}. Explain the results!
+  CorrectAnswer: if (num_views > 15 & medium == 'LinkedIn') { print('You are popular on LinkedIn!')}
+  AnswerTests: omnitest(correctExpr='if (num_views > 15 & medium == \'LinkedIn\') { print(\'You are popular on LinkedIn!\')}')
+  Hint: Just type in if (num_views > 15 & medium == 'LinkedIn') { print('You are popular on LinkedIn!')}.
+  
+- Class: cmd_question
+  Output: Finally, you can also tell the computer to do other work if the condition is not fulfilled. Use the else keyword with if (num_views > 20) { print('You are popular!') } else { print('Try to be more visible!') }
+  CorrectAnswer: if (num_views > 20) { print('You are popular!') } else { print('Try to be more visible!') }
+  AnswerTests: omnitest(correctExpr='if (num_views > 20) { print(\'You are popular!\') } else { print(\'Try to be more visible!\') }')
+  Hint: Just type in if (num_views > 20) { print('You are popular!') } else { print('Try to be more visible!')} .
+
+- Class: cmd_question
+  Output: That's it with respect to control structures. In R you really do not need them very often. Another common programming construct is the loop. In R you need them even less often than if statements. The best is to just experience a loop that iterates over all elements in a vector by running for (l in linkedin) { print(l) }.
+  CorrectAnswer: for (l in linkedin) { print(l) }
+  AnswerTests: omnitest(correctExpr='for (l in linkedin) { print(l) }')
+  Hint: Just type in for (l in linkedin) { print(l) }.
+
+- Class: text
+  Output: In R we do not use loops very often. But they can be very useful to perform repeated operations on collections of data, which is something we often want to do. So, for instance, loops could be used to get the square root of each element in a vector or we could use them to calculate the average value of a numeric column in a data frame. In R we have the powerful family of apply functions, which iterate over a vector or data frame for us. Check it out at the wonderful r-bloggers (http://www.r-bloggers.com/using-apply-sapply-lapply-in-r/). Don't worry if you do not immediately understand it. Most people don't. It will come with time and practice.
+  
+- Class: cmd_question
+  Output: The function apply works on data frames and matrixes. It takes three arguments. The first one is the data frame you would like to work one. We tell apply to traverse row-wise or column-wise by the second argument. 1 stands for row-wise traversal and 2 for column-wise traversal. The third argument is the function. So, for instance, in order to determine the average views for our linkedin and facebook week, we can run apply(my_week_df[c('linkedin','facebook')], 2, mean). mean is an R function to calculate the average. We will discuss it in more detail next week.
+  CorrectAnswer: apply(my_week_df[c('linkedin','facebook')], 2, mean)
+  AnswerTests: omnitest(correctExpr= 'apply(my_week_df[c(\'linkedin\',\'facebook\')], 2, mean)')
+  Hint: Just type in apply(my_week_df[c('linkedin','facebook')], 2, mean).
+
+- Class: cmd_question
+  Output: What do you need to change in order to get the average winning for both your poker and your roulette week? 
+  CorrectAnswer: apply(my_week_df[c('poker', 'roulette')], 2, mean)
+  AnswerTests: omnitest(correctExpr='apply(my_week_df[c(\'poker\', \'roulette\')], 2, mean)')
+  Hint: Almost. It is apply(my_week_df[c('poker', 'roulette')], 2, mean).
+
+- Class: cmd_question
+  Output: You can also play with R’s built-in character functions and apply (http://www.statmethods.net/management/functions.html). Try apply(my_week_df['days'], 2, nchar).
+  CorrectAnswer: apply(my_week_df['days'], 2, nchar)
+  AnswerTests: omnitest(correctExpr='apply(my_week_df[\'days\'], 2, nchar)')
+  Hint: Just type in apply(my_week_df['days'], 2, nchar).
+
+- Class: cmd_question
+  Output: Can you guess what this did? How about apply(my_week_df['days'], 2, toupper)?
+  CorrectAnswer: apply(my_week_df['days'], 2, toupper)
+  AnswerTests: omnitest(correctExpr='apply(my_week_df[\'days\'], 2, toupper)')
+  Hint: Just type in apply(my_week_df['days'], 2, toupper).
+  
+- Class: cmd_question
+  Output: Lastly, run apply(my_week_df[1], 2, length).
+  CorrectAnswer:  apply(my_week_df[1], 2, length)
+  AnswerTests: omnitest(correctExpr='apply(my_week_df[1], 2, length)')
+  Hint: Just type in apply(my_week_df[1], 2, length).
+
+- Class: text
+  Output: The final expression counted the number of rows. This will be of interest to you, because you can find out this way how many observations/rows your data contains. With the function nrow(my_week_df), you will get the same result. ncol delivers the number of columns/features.
+  
+- Class: cmd_question
+  Output: apply works on data frames. There are several other apply-family functions. You can, for instance, use sapply on a vector of data or a list. Run sapply(c(1,4,9,16), sqrt). 
+  CorrectAnswer: sapply(c(1,4,9,16), sqrt)
+  AnswerTests: omnitest(correctExpr='sapply(c(1,4,9,16), sqrt)')
+  Hint: Just type in sapply(c(1,4,9,16), sqrt).
+  
+- Class: cmd_question
+  Output: sapply returns a vector. lapply is very similar, but it will return a list rather than a vector. Try lapply(c(1,4,9,16), sqrt). 
+  CorrectAnswer: lapply(c(1,4,9,16), sqrt)
+  AnswerTests: omnitest(correctExpr='lapply(c(1,4,9,16), sqrt)')
+  Hint: Just type in lapply(c(1,4,9,16), sqrt).
+
+- Class: text
+  Output: We just mentioned another magic word with respect to functions. We said sapply would return a vector. A function does not just take values, but can also return them. In R this is simply the last statement in a function. Check it out under http://www.statmethods.net/management/userfunctions.html. 
+
+- Class: text
+  Output: If you are now wondering why you need all this, you are not alone. 'Using apply, sapply, lapply in R' (https://www.r-bloggers.com/using-apply-sapply-lapply-in-r/) is for as long as I can remember among the top viewed articles on rbloggers. However, if you continue to work with R, you will soon find the apply functions very useful.
+
+- Class: text
+  Output: Much more important than loops and control structures are user-defined functions in R. Just like you can call head, subset, etc. as so-called built-in functions, in any programming language you can define your own functions. In R, use the following syntax my_fun <- function(arg1, arg2) { body }. This means that the function my_fun takes two arguments (arg1, arg2) and executes all body statements. Again, please remember the indentation of programming outside of SWIRL. 
+    
+- Class: cmd_question
+  Output: Let's create a function to add 2 to any number with plus_two <- function(x) { x+2 }.
+  CorrectAnswer: plus_two <- function(x) { x+2 }
+  AnswerTests: omnitest(correctExpr='plus_two <- function(x) { x+2 }')
+  Hint: Just type in plus_two <- function(x) { x+2 }.
+
+- Class: cmd_question
+  Output: Now let's use plus_two the same way we use built-in functions. Type plus_two(12). You have just made the computer smarter! It learned how to add 2.
+  CorrectAnswer: plus_two(12)
+  AnswerTests: omnitest(correctExpr='plus_two(12)')
+  Hint: Just type in plus_two(12).
+
+- Class: cmd_question
+  Output: Of course, we can also create a function with two arguments by typing in sum_x_y <- function(x, y) { return (x+y) }. What do you think it does? The return statement defines the value the function gives back.
+  CorrectAnswer: sum_x_y <- function(x,y) { return (x+y) }
+  AnswerTests: omnitest(correctExpr='sum_x_y <- function(x,y) { return (x+y) }')
+  Hint: Just type in sum_x_y <- function(x,y) { return (x+y) }.
+
+- Class: cmd_question
+  Output: And, we can call the function with sum_x_y(-2, 3)
+  CorrectAnswer: sum_x_y(-2, 3)
+  AnswerTests: omnitest(correctExpr='sum_x_y(-2, 3)')
+  Hint: Just type in sum_x_y(-2, 3).
+
+- Class: text
+  Output: That's it with regard to the basics of R. In the next lesson, we use our knowledge to analyse a real-life social dataset about death penalties and explore how easy it is to plot data with R. 
+  
